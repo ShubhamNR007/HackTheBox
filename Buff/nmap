@@ -1,0 +1,17 @@
+# Nmap 7.93 scan initiated Thu Mar 30 00:25:00 2023 as: nmap -sV -sC -A -oN nmap -Pn -vvv 10.10.10.198
+Nmap scan report for 10.10.10.198 (10.10.10.198)
+Host is up, received user-set (0.19s latency).
+Scanned at 2023-03-30 00:25:00 EDT for 49s
+Not shown: 999 filtered tcp ports (no-response)
+PORT     STATE SERVICE REASON  VERSION
+8080/tcp open  http    syn-ack Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.4.6)
+|_http-title: mrb3n's Bro Hut
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Mar 30 00:25:49 2023 -- 1 IP address (1 host up) scanned in 49.35 seconds

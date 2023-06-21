@@ -1,0 +1,17 @@
+# Nmap 7.93 scan initiated Mon Mar 27 08:42:00 2023 as: nmap -sV -sC -A -oN nmap 10.10.10.222
+Nmap scan report for 10.10.10.222 (10.10.10.222)
+Host is up (0.33s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 9c40fa859b01acac0ebc0c19518aee27 (RSA)
+|   256 5a0cc03b9b76552e6ec4f4b95d761709 (ECDSA)
+|_  256 b79df7489da2f27630fd42d3353a808c (ED25519)
+80/tcp open  http    nginx 1.14.2
+|_http-server-header: nginx/1.14.2
+|_http-title: Welcome
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Mar 27 08:42:48 2023 -- 1 IP address (1 host up) scanned in 48.59 seconds
