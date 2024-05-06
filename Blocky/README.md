@@ -13,7 +13,7 @@
 8192/tcp closed sophos
 
 ----------------------------------------------------
-# gobuster
+# gobuster / exploitation
 ----------------------------------------------------
 /wiki                 (Status: 301) [Size: 307] [--> http://blocky.htb/wiki/]
 /wp-content           (Status: 301) [Size: 313] [--> http://blocky.htb/wp-content/]
