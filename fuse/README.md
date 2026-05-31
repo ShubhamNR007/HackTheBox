@@ -1,3 +1,12 @@
+# fuse
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Medium |
+
 fuse
 cewl -w pwd.txt --with-numbers http://fuse.fabricorp.local/papercut/logs/html/index.htm
 

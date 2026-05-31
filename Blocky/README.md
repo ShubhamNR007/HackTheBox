@@ -1,20 +1,20 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Blocky
-# 17/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Easy |
+
 10.10.10.37
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 21/tcp   open   ftp     ProFTPD 1.3.5a
 80/tcp   open   http    Apache httpd 2.4.18
 8192/tcp closed sophos
 
-----------------------------------------------------
-# gobuster / exploitation
-----------------------------------------------------
+## Exploitation
 /wiki                 (Status: 301) [Size: 307] [--> http://blocky.htb/wiki/]
 /wp-content           (Status: 301) [Size: 313] [--> http://blocky.htb/wp-content/]
 /plugins              (Status: 301) [Size: 310] [--> http://blocky.htb/plugins/]

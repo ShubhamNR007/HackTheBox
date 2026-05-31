@@ -1,19 +1,19 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Buff
-# 30/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.198
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT     STATE SERVICE REASON  VERSION
 8080/tcp open  http    syn-ack Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.4.6)
 
-----------------------------------------------------
-# foothold
-----------------------------------------------------
+## Exploitation
 Visiting /contact reveals information about the version of the web application.
 http://10.10.10.198:8080/contact.php
 

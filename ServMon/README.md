@@ -1,13 +1,15 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # ServMon
-# 14/4/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Windows |
+| Difficulty | Easy |
+
 10.10.10.184
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 PORT     STATE SERVICE       VERSION
 21/tcp   open  ftp           Microsoft ftpd
 22/tcp   open  ssh           OpenSSH for_Windows_8.0 (protocol 2.0)
@@ -19,9 +21,7 @@ PORT     STATE SERVICE       VERSION
 6699/tcp open  napster?
 8443/tcp open  ssl/https-alt
 
-----------------------------------------------------
-# enum
-----------------------------------------------------
+## Enumeration
 ftp 10.10.10.184
 anonymous
 passive
@@ -43,9 +43,7 @@ passwords is also unsuccessful.
 https://10.10.10.184:8443/
 
 
-----------------------------------------------------
-# foothold
-----------------------------------------------------
+## Exploitation
 └─$ searchsploit nvms
 
 Configure the browser to use Burp as a proxy, 
@@ -92,9 +90,7 @@ The password L1k3B1gBut7s@W0rk was found to work for the username nadine , and a
 command shell is opened as this user. However, the command whoami /priv reveals that they
 are an unprivileged user.
 
-----------------------------------------------------
-# priv esc
-----------------------------------------------------
+## Privilege Escalation
 Enumerating of the filesystem reveals the non-default directory C:\Program
 Files\NSClient++\ . The .ini file for NSClient is found inside. Let's read it
 
@@ -112,8 +108,6 @@ command reveals that the same software version is installed on the box.
 ->cmd /c "C:\Program Files\NSClient++\nscp.exe" --version
 
 
-
-
 ssh -L 8443:127.0.0.1:8443 nadine@10.10.10.184
 
 https://localhost:8443/
@@ -125,7 +119,6 @@ Let's create an external script that will execute our payload on the system. Nav
 Next, input /settings/external scripts/scripts/shell in the Section field, the command in
 the Key field, and C:\Temp\pwn.bat in Value . The bat file will be used to run commands as
 system.
-
 
 
 cd ~/

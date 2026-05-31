@@ -1,20 +1,20 @@
-----------------------------------------------------
-# Author -> Shubham Rannpise
-----------------------------------------------------
 # Delivery
-# 27/3/2023
+
+
+| Key | Value |
+|-----|-------|
+| Platform | HackTheBox |
+| OS | Linux |
+| Difficulty | Easy |
+
 10.10.10.222
 
-----------------------------------------------------
-# nmap
-----------------------------------------------------
+## Recon
 22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
 80/tcp open  http    nginx 1.14.2
 8065/tcp open  unknown
 
-----------------------------------------------------
-# enum/exploitation
-----------------------------------------------------
+## Exploitation
 └─$ sudo nano /etc/hosts            
 10.10.10.222 delivery.htb helpdesk.delivery.htb
 http://helpdesk.delivery.htb/
@@ -31,9 +31,7 @@ login to mattermost
 we got ssh creds
 maildeliverer:Youve_G0t_Mail! 
 
-----------------------------------------------------
-# privesc
-----------------------------------------------------
+## Privilege Escalation
 cat /opt/mattermost/config/config.json
 mysql -u mmuser -p
 use mattermost;
